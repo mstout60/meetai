@@ -11,8 +11,16 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerDescription,
+} from "@/components/ui/drawer";
 import { InputGroup, InputGroupAddon } from "@/components/ui/input-group";
 import { SearchIcon, CheckIcon } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 function Command({
   className,
@@ -43,6 +51,56 @@ function CommandDialog({
   className?: string;
   showCloseButton?: boolean;
 }) {
+  return (
+    <Dialog {...props}>
+      <DialogHeader className="sr-only">
+        <DialogTitle>{title}</DialogTitle>
+        <DialogDescription>{description}</DialogDescription>
+      </DialogHeader>
+      <DialogContent
+        className={cn(
+          "top-1/3 translate-y-0 overflow-hidden rounded-4xl! p-0",
+          className,
+        )}
+        showCloseButton={showCloseButton}
+      >
+        {/* Modified to fix issue with CommandDialog not being wrapped in the Command - MAS  */}
+        <Command>{children}</Command>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function CommandResponsiveDialog({
+  title = "Command Palette",
+  description = "Search for a command to run...",
+  children,
+  className,
+  showCloseButton = false,
+  ...props
+}: React.ComponentProps<typeof Dialog> & {
+  title?: string;
+  description?: string;
+  className?: string;
+  showCloseButton?: boolean;
+}) {
+  const isMobile = useIsMobile();
+
+  if (isMobile) {
+    return (
+      <Drawer {...props}>
+        <DrawerContent className="overflow-hidden p-0">
+          <DrawerHeader className="sr-only">
+            <DrawerTitle>{title}</DrawerTitle>
+            <DrawerDescription>{description}</DrawerDescription>
+          </DrawerHeader>
+          {/* Modified to fix issue with CommandDialog not being wrapped in the Command - MAS  */}
+          <Command>{children}</Command>
+        </DrawerContent>
+      </Drawer>
+    );
+  }
+
   return (
     <Dialog {...props}>
       <DialogHeader className="sr-only">
@@ -182,6 +240,7 @@ function CommandShortcut({
 
 export {
   Command,
+  CommandResponsiveDialog,
   CommandDialog,
   CommandInput,
   CommandList,
