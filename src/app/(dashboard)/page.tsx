@@ -4,9 +4,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import React from "react";
 
-type Props = {};
-
-const Page = async (props: Props) => {
+const Page = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
