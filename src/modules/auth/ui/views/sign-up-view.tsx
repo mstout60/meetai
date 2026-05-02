@@ -47,27 +47,29 @@ export const SignUpView = () => {
     },
   });
 
-  const onSubmit = (data: z.infer<typeof formSchema>) => {
+  const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setError(null);
     setPending(true);
 
-    authClient.signUp.email(
-      {
-        name: data.name,
-        email: data.email,
-        password: data.password,
-      },
-      {
-        onSuccess: () => {
-          setPending(false);
-          router.push("/");
+    try {
+      await authClient.signUp.email(
+        {
+          name: data.name,
+          email: data.email,
+          password: data.password,
         },
-        onError: ({ error }) => {
-          setPending(false);
-          setError(error.message);
+        {
+          onSuccess: () => {
+            router.push("/");
+          },
+          onError: ({ error }) => {
+            setError(error.message);
+          },
         },
-      },
-    );
+      );
+    } finally {
+      setPending(false);
+    }
   };
 
   return (
