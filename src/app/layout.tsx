@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 
 import { TRPCReactProvider } from "@/trpc/client";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,7 +21,10 @@ export default function RootLayout({
   return (
     <TRPCReactProvider>
       <html lang="en" className={cn("font-sans", inter.className)}>
-        <body className={`${inter.className} antialiased`}>{children}</body>
+        <body className={`${inter.className} antialiased`}>
+          <Toaster />
+          {children}
+          </body>
       </html>
     </TRPCReactProvider>
   );
