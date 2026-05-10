@@ -113,7 +113,7 @@ export const AgentForm = ({
               <Textarea
                 {...field}
                 id="form-agent-instruct"
-                placeholder="You are a helpful math assistant that can answer questions and help wiht assignments."
+                placeholder="You are a helpful math assistant that can answer questions and help with assignments."
               />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
