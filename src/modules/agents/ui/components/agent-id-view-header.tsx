@@ -16,7 +16,6 @@ import {
   ChevronRightIcon,
   TrashIcon,
   PencilIcon,
-  MoveVerticalIcon,
   MoreHorizontalIcon,
 } from "lucide-react";
 import Link from "next/link";
@@ -59,7 +58,7 @@ export const AgentIdViewHeader = ({
       {/* Without modal={false}, the dialog that this dropdown opens causes the websit to get unclickable */}
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost">
+          <Button variant="ghost" aria-label="Open agent actions">
             <MoreHorizontalIcon />
           </Button>
         </DropdownMenuTrigger>
