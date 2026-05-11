@@ -17,24 +17,31 @@ export const useConfirm = (
     });
   };
 
-  const handleClose = () => {
+  const clearPromise = () => {
     setPromise(null);
+  };
+
+  const handleDismiss = () => {
+    promise?.resolve(false);
+    clearPromise();
   };
 
   const handleConfirm = () => {
     promise?.resolve(true);
-    handleClose();
+    clearPromise();
   };
 
   const handleCancel = () => {
     promise?.resolve(false);
-    handleClose();
+    clearPromise();
   };
 
   const ConfirmationDialog = () => (
     <ResponsiveDialog
       open={promise !== null}
-      onOpenChange={handleClose}
+      onOpenChange={(open) => {
+        if (!open) handleDismiss();
+      }}
       title={title}
       description={description}
     >

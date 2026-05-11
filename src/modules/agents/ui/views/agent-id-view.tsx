@@ -50,7 +50,7 @@ export const AgentIdView = ({ agentId }: Props) => {
     }),
   );
 
-  const [RemmoveConfirmation, confirmRemove] = useConfirm(
+  const [RemoveConfirmation, confirmRemove] = useConfirm(
     "Are you sure?",
     `The following actin will remove ${data.meetingCount} associated meetings`,
   );
@@ -65,7 +65,7 @@ export const AgentIdView = ({ agentId }: Props) => {
 
   return (
     <>
-      <RemmoveConfirmation />
+      <RemoveConfirmation />
       <UpdateAgentDialog
         open={updateAgentDialogOpen}
         onOpenChange={setUpdateAgentDialogOpen}
