@@ -7,7 +7,6 @@ import { ColumnDef } from "@tanstack/react-table";
 import { GeneratedAvatar } from "@/components/generated-avatar";
 import {
   CornerDownRightIcon,
-  VideoIcon,
   CircleCheckIcon,
   CircleXIcon,
   ClockArrowUpIcon,
@@ -17,7 +16,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { MeetingGetMany } from "@/modules/meetings/types";
 import { cn } from "@/lib/utils";
-import { agents } from "@/db/schema";
+
 
 function formatDuration(seconds: number) {
   return humanizeDuration(seconds * 1000, {
@@ -105,7 +104,7 @@ export const columns: ColumnDef<MeetingGetMany[number]>[] = [
         className="capitalize  [&>svg]:size-4 flex items-center gap-x-2"
       >
         <ClockFadingIcon className="text-blue-700" />
-        {row.original.duration
+        {row.original.duration != null
           ? formatDuration(row.original.duration)
           : "No duration"}
       </Badge>
