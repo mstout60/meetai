@@ -116,7 +116,7 @@ export const MeetingForm = ({
         onOpenChange={setOpenNewAgentDialog}
       />
       <form
-        id="form-agent"
+        id="form-meeting"
         onSubmit={form.handleSubmit(onSubmit)}
         className="space-y-4"
       >
@@ -129,7 +129,7 @@ export const MeetingForm = ({
                 <FieldLabel htmlFor="form-meeting-name">Name</FieldLabel>
                 <Input
                   {...field}
-                  id="form-meeting-agent-name"
+                  id="form-meeting-name"
                   type="text"
                   placeholder="e.g. Math Consultations"
                 />
