@@ -24,6 +24,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 function Command({
   className,
+  shouldFilter,
   ...props
 }: React.ComponentProps<typeof CommandPrimitive>) {
   return (
@@ -33,6 +34,7 @@ function Command({
         "flex size-full flex-col overflow-hidden rounded-4xl bg-popover p-1 text-popover-foreground",
         className,
       )}
+      shouldFilter={shouldFilter}
       {...props}
     />
   );
@@ -43,12 +45,14 @@ function CommandDialog({
   description = "Search for a command to run...",
   children,
   className,
+  shouldFilter = true,
   showCloseButton = false,
   ...props
 }: React.ComponentProps<typeof Dialog> & {
   title?: string;
   description?: string;
   className?: string;
+  shouldFilter?: boolean;
   showCloseButton?: boolean;
 }) {
   return (
@@ -65,7 +69,7 @@ function CommandDialog({
         showCloseButton={showCloseButton}
       >
         {/* Modified to fix issue with CommandDialog not being wrapped in the Command - MAS  */}
-        <Command>{children}</Command>
+        <Command shouldFilter={shouldFilter}>{children}</Command>
       </DialogContent>
     </Dialog>
   );
@@ -76,12 +80,14 @@ function CommandResponsiveDialog({
   description = "Search for a command to run...",
   children,
   className,
+  shouldFilter = true,
   showCloseButton = false,
   ...props
 }: React.ComponentProps<typeof Dialog> & {
   title?: string;
   description?: string;
   className?: string;
+  shouldFilter?: boolean;
   showCloseButton?: boolean;
 }) {
   const isMobile = useIsMobile();
@@ -95,7 +101,7 @@ function CommandResponsiveDialog({
             <DrawerDescription>{description}</DrawerDescription>
           </DrawerHeader>
           {/* Modified to fix issue with CommandDialog not being wrapped in the Command - MAS  */}
-          <Command>{children}</Command>
+          <Command shouldFilter={shouldFilter}>{children}</Command>
         </DrawerContent>
       </Drawer>
     );
@@ -115,7 +121,7 @@ function CommandResponsiveDialog({
         showCloseButton={showCloseButton}
       >
         {/* Modified to fix issue with CommandDialog not being wrapped in the Command - MAS  */}
-        <Command>{children}</Command>
+        <Command shouldFilter={shouldFilter}>{children}</Command>
       </DialogContent>
     </Dialog>
   );
