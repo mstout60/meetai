@@ -24,6 +24,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 
 function Command({
   className,
+  shouldFilter,
   ...props
 }: React.ComponentProps<typeof CommandPrimitive>) {
   return (
@@ -43,12 +44,14 @@ function CommandDialog({
   description = "Search for a command to run...",
   children,
   className,
+  shouldFilter = true,
   showCloseButton = false,
   ...props
 }: React.ComponentProps<typeof Dialog> & {
   title?: string;
   description?: string;
   className?: string;
+  shouldFilter?: boolean;
   showCloseButton?: boolean;
 }) {
   return (
@@ -76,12 +79,14 @@ function CommandResponsiveDialog({
   description = "Search for a command to run...",
   children,
   className,
+  shouldFilter = true,
   showCloseButton = false,
   ...props
 }: React.ComponentProps<typeof Dialog> & {
   title?: string;
   description?: string;
   className?: string;
+  shouldFilter?: boolean;
   showCloseButton?: boolean;
 }) {
   const isMobile = useIsMobile();
