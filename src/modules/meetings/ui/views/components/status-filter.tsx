@@ -9,6 +9,7 @@ import {
 import { CommandSelect } from "@/components/command-select";
 import { MeetingStatus } from "@/modules/meetings/types";
 import { useMeetingsFilters } from "@/modules/meetings/hooks/use-meetings-filters";
+import { DEFAULT_PAGE } from "@/constants";
 
 const options = [
   {
@@ -71,7 +72,9 @@ export const StatusFilter = () => {
       placeholder="Status"
       className="h-9"
       options={options}
-      onSelect={(value) => setFilters({ status: value as MeetingStatus })}
+      onSelect={(value) =>
+        setFilters({ status: value as MeetingStatus, page: DEFAULT_PAGE })
+      }
       value={filters.status ?? ""}
     />
   );

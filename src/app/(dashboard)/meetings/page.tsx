@@ -13,7 +13,7 @@ import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { loadSearchParams } from "@/modules/meetings/params";
 import type { SearchParams } from "nuqs";
-import { se } from "date-fns/locale";
+
 
 interface Props {
   searchParams: Promise<SearchParams>;
