@@ -42,9 +42,6 @@ export const MeetingIdView = ({ meetingId }: Props) => {
         // TODO: Invalidate Free tier usage
         router.push("/meetings");
       },
-      onError: (error) => {
-        // onError already handles user feedback
-      },
     }),
   );
 
@@ -55,7 +52,7 @@ export const MeetingIdView = ({ meetingId }: Props) => {
 
     try {
       await removeMeeting.mutateAsync({ id: meetingId });
-    } catch (error) {
+    } catch {
       toast.error("Failed to remove meeting");
     }
   };
