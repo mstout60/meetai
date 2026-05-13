@@ -58,7 +58,7 @@ export const MeetingIdViewHeader = ({
       {/* Without modal={false}, the dialog that this dropdown opens causes the websit to get unclickable */}
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" aria-label="Open agent actions">
+          <Button variant="ghost" aria-label="Open meeting actions">
             <MoreHorizontalIcon />
           </Button>
         </DropdownMenuTrigger>

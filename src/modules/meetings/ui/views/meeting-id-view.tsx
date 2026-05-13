@@ -14,6 +14,7 @@ import { toast } from "sonner";
 import { useConfirm } from "@/hooks/use-confirm";
 import { UpdateMeetingDialog } from "./components/update-meeting-dialog";
 import { useState } from "react";
+import { tryLoadManifestWithRetries } from "next/dist/server/load-components";
 
 interface Props {
   meetingId: string;
@@ -53,7 +54,11 @@ export const MeetingIdView = ({ meetingId }: Props) => {
 
     if (!ok) return;
 
-    await removeMeeting.mutateAsync({ id: meetingId });
+    try {
+      await removeMeeting.mutateAsync({ id: meetingId });
+    } catch (error) {
+      toast.error("Failed to remove meeting");
+    }
   };
 
   return (
@@ -64,7 +69,7 @@ export const MeetingIdView = ({ meetingId }: Props) => {
         onOpenChange={setUpdateMeetingDialogOpen}
         initialValues={data}
       />
-      <div className="flex-1 py-4 px-4 md:px:8 flex flex-col gap-y-4">
+      <div className="flex-1 py-4 px-4 md:px-8 flex flex-col gap-y-4">
         <MeetingIdViewHeader
           meetingId={meetingId}
           meetingName={data.name}
