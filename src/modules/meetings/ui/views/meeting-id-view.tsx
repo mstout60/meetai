@@ -14,7 +14,6 @@ import { toast } from "sonner";
 import { useConfirm } from "@/hooks/use-confirm";
 import { UpdateMeetingDialog } from "./components/update-meeting-dialog";
 import { useState } from "react";
-import { tryLoadManifestWithRetries } from "next/dist/server/load-components";
 
 interface Props {
   meetingId: string;
@@ -44,7 +43,7 @@ export const MeetingIdView = ({ meetingId }: Props) => {
         router.push("/meetings");
       },
       onError: (error) => {
-        toast.error(error.message);
+        // onError already handles user feedback
       },
     }),
   );
