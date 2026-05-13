@@ -18,4 +18,14 @@ export const filtersSearchParams = {
   agentId: parseAsString.withDefault("").withOptions({ clearOnDefault: true }),
 };
 
-export const loadSearchParams = createLoader(filtersSearchParams);
+const baseLoadSearchParams = createLoader(filtersSearchParams);
+
+export const loadSearchParams = async (
+  searchParams: Parameters<typeof baseLoadSearchParams>[0],
+) => {
+  const parsed = await baseLoadSearchParams(searchParams);
+  return {
+    ...parsed,
+    page: Math.max(DEFAULT_PAGE, parsed.page),
+  };
+};
