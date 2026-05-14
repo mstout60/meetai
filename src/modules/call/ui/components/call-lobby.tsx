@@ -1,3 +1,5 @@
+"use client";
+
 import { LogInIcon } from "lucide-react";
 import Link from "next/link";
 
@@ -43,8 +45,7 @@ const DisabledVideoPreview = () => {
 const AllowBrowserPermission = () => {
   return (
     <p className="text-sm">
-      Please grant your browser permission to access your canera and
-      microphone.
+      Please grant your browser permission to access your canera and microphone.
     </p>
   );
 };
