@@ -43,7 +43,7 @@ const DisabledVideoPreview = () => {
 const AllowBrowserPermission = () => {
   return (
     <p className="text-sm">
-      Please grant your browser a permission to access your canera and
+      Please grant your browser permission to access your canera and
       microphone.
     </p>
   );
